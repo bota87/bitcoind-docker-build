@@ -12,7 +12,7 @@ RUN DEBIAN_FRONTEND=noninteractive \
 FROM os-base as bitcoind-install
 
 ARG TARGETPLATFORM
-ARG BITCOIN_VERSION=27.2
+ARG BITCOIN_VERSION=28.2
 # Install Bitcoin Core binaries and libraries
 RUN if [ "${TARGETPLATFORM}" = "linux/amd64" ]; then export TARGETPLATFORM=x86_64-linux-gnu; fi && \
     if [ "${TARGETPLATFORM}" = "linux/arm64" ]; then export TARGETPLATFORM=aarch64-linux-gnu; fi && \
@@ -22,7 +22,6 @@ RUN if [ "${TARGETPLATFORM}" = "linux/amd64" ]; then export TARGETPLATFORM=x86_6
     tar -zxf bitcoin-${BITCOIN_VERSION}-${TARGETPLATFORM}.tar.gz && \
 	cd bitcoin-${BITCOIN_VERSION} && \
 	install -vD bin/* /usr/bin && \
-	install -vD lib/* /usr/lib && \
 	cd /tmp && \
 	rm bitcoin-${BITCOIN_VERSION}-${TARGETPLATFORM}.tar.gz && \
 	rm -rf bitcoin-${BITCOIN_VERSION}

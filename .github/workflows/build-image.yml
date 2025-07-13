@@ -22,4 +22,4 @@ jobs:
           push: true
           tags: |
             bota87/bitcoind:latest
-            bota87/bitcoind:27.2
+            bota87/bitcoind:28.2
