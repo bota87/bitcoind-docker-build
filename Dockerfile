@@ -1,5 +1,5 @@
 ARG OS=debian
-ARG OS_VER=bullseye-slim
+ARG OS_VER=bookworm-slim
 FROM ${OS}:${OS_VER} as os-base
 
 # Install dependencies
@@ -12,7 +12,7 @@ RUN DEBIAN_FRONTEND=noninteractive \
 FROM os-base as bitcoind-install
 
 ARG TARGETPLATFORM
-ARG BITCOIN_VERSION=25.0
+ARG BITCOIN_VERSION=26.2
 # Install Bitcoin Core binaries and libraries
 RUN if [ "${TARGETPLATFORM}" = "linux/amd64" ]; then export TARGETPLATFORM=x86_64-linux-gnu; fi && \
     if [ "${TARGETPLATFORM}" = "linux/arm64" ]; then export TARGETPLATFORM=aarch64-linux-gnu; fi && \
